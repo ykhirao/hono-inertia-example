@@ -1,0 +1,3 @@
+# `turso dev` を使ったローカル開発では auth token は不要。
+TURSO_DATABASE_URL="http://127.0.0.1:8080"
+TURSO_AUTH_TOKEN=""

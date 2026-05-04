@@ -1,0 +1,39 @@
+{
+  "name": "my-hono-app",
+  "type": "module",
+  "packageManager": "pnpm@10.13.1",
+  "scripts": {
+    "dev": "concurrently -n turso,vite -c blue,green \"pnpm db:dev\" \"vite\"",
+    "build": "vite build",
+    "preview": "pnpm build && vite preview",
+    "deploy": "pnpm build && wrangler deploy",
+    "db:dev": "turso dev --db-file ./local.db",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate:local": "DATABASE_URL=http://127.0.0.1:8080 tsx scripts/migrate.ts",
+    "db:migrate:remote": "tsx scripts/migrate.ts",
+    "db:seed:local": "DATABASE_URL=http://127.0.0.1:8080 TURSO_DATABASE_URL=http://127.0.0.1:8080 tsx scripts/seed.ts",
+    "db:studio": "drizzle-kit studio",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "init:secrets": "bash scripts/init-secrets.sh"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.6",
+    "@libsql/client": "^0.15.10",
+    "drizzle-orm": "^0.38.4",
+    "hono": "^4.12.14",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.2.3",
+    "@cloudflare/workers-types": "^4.20250927.0",
+    "@tailwindcss/vite": "^4.1.13",
+    "@types/node": "^25.6.0",
+    "concurrently": "^9.1.2",
+    "drizzle-kit": "^0.30.6",
+    "tailwindcss": "^4.1.13",
+    "tsx": "^4.20.6",
+    "vite": "^8.0.10",
+    "vite-ssr-components": "^0.6.1",
+    "wrangler": "^4.17.0"
+  }
+}
