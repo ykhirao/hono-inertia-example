@@ -1,4 +1,5 @@
-name: Deploy
+name: '[Deploy]'
+run-name: 'Deploy ${{ github.ref == ''refs/heads/main'' && ''production'' || ''staging'' }}'
 
 on:
   push:
